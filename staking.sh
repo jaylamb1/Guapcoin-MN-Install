@@ -51,10 +51,10 @@ echo "server=1" >> guapcoin.conf
 echo "daemon=1" >> guapcoin.conf
 echo "logtimestamps=1" >> guapcoin.conf
 echo "maxconnections=256" >> guapcoin.conf
-echo "addnode=67.207.81.240" >> guapcoin.conf
-echo "addnode=165.227.201.49" >> guapcoin.conf
-echo "addnode=165.227.193.239" >> guapcoin.conf
-echo "addnode=165.227.201.59" >> guapcoin.conf
+echo "addnode=159.65.221.180" >> guapcoin.conf
+echo "addnode=165.227.192.223" >> guapcoin.conf
+echo "addnode=159.65.217.114" >> guapcoin.conf
+echo "addnode=165.227.83.244" >> guapcoin.conf
 echo "port=9633" >> guapcoin.conf
 mv guapcoin.conf .guapcoin
 

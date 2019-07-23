@@ -254,10 +254,10 @@ bind=${IP}:9633
 masternodeaddr=${IP}
 masternodeprivkey=${KEY}
 masternode=1
-addnode=67.207.81.240
-addnode=165.227.201.49
-addnode=165.227.193.239
-addnode=165.227.201.59
+addnode=159.65.221.180
+addnode=165.227.192.223
+addnode=159.65.217.114
+addnode=165.227.83.244
 EOL
 chmod 0600 $USERHOME/.guapcoin/guapcoin.conf
 chown -R $USER:$USER $USERHOME/.guapcoin
