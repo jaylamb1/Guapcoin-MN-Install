@@ -111,9 +111,9 @@ echo "
     /_|_\  ------- EXTRA MASTERNODE INSTALLER v1 -------+
  |                                                        |
  |     This script will install an additional MN.         |
- |   It is assumed that at least your 1st MN has been     |
- | created and the guapcoin executables in /usr/local/bin |
- |        are in place and are operational.               |
+ |  It is assumed that at least one MN has been installed |
+ |    on your VPS and that the guapcoin executables in    |
+ |    /usr/local/bin are in place and are operational.    |
  |                                                        |
  | You can choose between two installation options:       |::
  |              default and advanced.                     |::
@@ -262,7 +262,7 @@ done
 clear
 
 echo "Your masternode is syncing. Please wait for this process to finish."
-echo "This can take up to a few hours. Do not close this window."
+echo "This step can take up to a few hours. Do not close this window."
 
 echo ""
 
@@ -274,9 +274,10 @@ done
 clear
 
 cat << EOL
-Now, you need to start your masternode. Please go to your desktop wallet
-Click the Masternodes tab
-Click Start all at the bottom or select your new node and click Start Alias.
+Now, you need to start your masternode. Follow the steps below:
+1) Please go to your desktop wallet
+2) Click the Masternodes tab
+3) Click 'Start all' at the bottom or select your new node and click 'Start Alias'.
 EOL
 
 read -p "Press Enter to continue after you've done that. " -n1 -s
@@ -285,6 +286,6 @@ clear
 
 echo "" && echo "Masternode$MNID setup completed." && echo ""
 
-echo "" && echo "Please see your Masternode$MNID details below" && echo ""
+echo "" && echo "Please see your Masternode$MNID details below:" && echo ""
 
 echo -ne "$(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID masternode status" "$USER")\\r"
