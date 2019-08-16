@@ -301,5 +301,5 @@ read -p "Press Enter to continue after you've done that. " -n1 -s
 clear
 
 echo "" && echo "Masternode$MNID setup completed." && echo ""
-echo "" && echo "Please see your Masternode$MNID details below:" && echo ""
+echo "" && echo "Please see your Masternode$MNID details below:"
 echo -ne "$(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID masternode status" "$USER")\\r"
