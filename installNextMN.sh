@@ -282,6 +282,9 @@ until su -c "/usr/local/bin/guapcoin-cli mnsync status 2>/dev/null | grep '\"IsB
   echo -ne "Current block: $(su -c "/usr/local/bin/guapcoin-cli getblockcount" "$USER")\\r"
   sleep 1
 done
+echo "SYNC complete!"
+sleep 3
+clear
 
 echo "Your wallet is loaded at /$USERHOME/.guapcoin$MNID, and synce has completed for the new Masternode$MNID"
 sleep 7
@@ -301,5 +304,5 @@ read -p "Press Enter to continue after you've done that. " -n1 -s
 clear
 
 echo "" && echo "Masternode$MNID setup completed." && echo ""
-echo "" && echo "Please see your Masternode$MNID details below:"
+echo "" && echo "Please see details for the new Masternode$MNID below:"
 echo -ne "$(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID masternode status" "$USER")\\r"
