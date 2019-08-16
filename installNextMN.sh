@@ -117,7 +117,7 @@ echo "
  |          then this installer is not for you.           |
  |                                                        |
  |  It is assumed that at least one MN has been installed |
- |    on your VPS and that the guapcoin executables in    |
+ |    on this VPS and that the guapcoin executables in    |
  |    /usr/local/bin are in place and are operational.    |
  |                                                        |
  |  It is also assumed that this VPS is setup with a new  |
