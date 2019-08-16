@@ -181,7 +181,7 @@ read -e -p "Masternode Private Key (e.g. 7edfjLCUzGczZi3JQw8GHp434R9kNY33eFyMGeK
 fi
 
 if [ -z "$MNID" ]; then
-read -e -p "Enter a single digit numerical value for this Masternode's ID#. It must not match the ID# of an existing MN (e.g. if this is your second MN enter '2') : " MNID
+read -e -p "Enter a single digit number for this Masternode's ID#. It must not match the ID# of an existing MN (e.g. if this is your second MN enter '2') : " MNID
 fi
 
 if [ -z "$FAIL2BAN" ]; then
@@ -283,7 +283,7 @@ until su -c "/usr/local/bin/guapcoin-cli mnsync status 2>/dev/null | grep '\"IsB
   sleep 1
 done
 
-echo "Your wallet is loaded at $USERHOME/.guapcoin$MNIDand and synce has completed for the new Masternode$MNID"
+echo "Your wallet is loaded at /$USERHOME/.guapcoin$MNID, and synce has completed for the new Masternode$MNID"
 sleep 7
 
 
@@ -301,7 +301,5 @@ read -p "Press Enter to continue after you've done that. " -n1 -s
 clear
 
 echo "" && echo "Masternode$MNID setup completed." && echo ""
-
 echo "" && echo "Please see your Masternode$MNID details below:" && echo ""
-
 echo -ne "$(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID masternode status" "$USER")\\r"
