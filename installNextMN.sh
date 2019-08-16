@@ -111,11 +111,23 @@ echo "
     /_|_\  ------- EXTRA MASTERNODE INSTALLER v1 -------+
  |                                                        |
  |     This script will install an additional MN.         |
+ |                                                        |
+ |  If you have NOT ALREADY INSTALLED a first MN on this  |
+ |   VPS using the standard Guapcoin-MN-Install script,   |
+ |          then this installer is not for you.           |
+ |                                                        |
  |  It is assumed that at least one MN has been installed |
  |    on your VPS and that the guapcoin executables in    |
  |    /usr/local/bin are in place and are operational.    |
  |                                                        |
- | You can choose between two installation options:       |::
+ |  It is also assumed that this VPS is setup with a new  |
+ |      static IP which will be used for this new MN,     |
+ |     and that the interface for the new IP is active.   |
+ |   See your VPS documentation on additional static IP.  |
+ |                                                        |
+ |           -------------------------------              |
+ |                                                        |
+ |   You can choose between two installation options:     |::
  |              default and advanced.                     |::
  |                                                        |::
  |  The advanced installation will install and run        |::
@@ -161,7 +173,7 @@ fi
 USERHOME=`eval echo "~$USER"`
 
 if [ -z "$ARGUMENTIP" ]; then
-read -e -p "Server IP Address: " -i $EXTERNALIP -e IP
+read -e -p "Server IP Address (Ensure that you enter the new static IP): " -i $EXTERNALIP -e IP
 fi
 
 if [ -z "$KEY" ]; then
@@ -169,7 +181,7 @@ read -e -p "Masternode Private Key (e.g. 7edfjLCUzGczZi3JQw8GHp434R9kNY33eFyMGeK
 fi
 
 if [ -z "$MNID" ]; then
-read -e -p "Enter a single digit numerical value for this Masternode's ID# (Must not match the ID# of an existing MN. E.g. if this is your second MN enter '2'.) : " MNID
+read -e -p "Enter a single digit numerical value for this Masternode's ID#. It must not match the ID# of an existing MN (e.g. if this is your second MN enter '2') : " MNID
 fi
 
 if [ -z "$FAIL2BAN" ]; then
@@ -270,6 +282,10 @@ until su -c "/usr/local/bin/guapcoin-cli mnsync status 2>/dev/null | grep '\"IsB
   echo -ne "Current block: $(su -c "/usr/local/bin/guapcoin-cli getblockcount" "$USER")\\r"
   sleep 1
 done
+
+echo "Your wallet is loaded at $USERHOME/.guapcoin$MNIDand and synce has completed for the new Masternode$MNID"
+sleep 7
+
 
 clear
 
