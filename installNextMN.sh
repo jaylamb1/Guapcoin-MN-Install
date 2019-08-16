@@ -282,6 +282,7 @@ until su -c "/usr/local/bin/guapcoin-cli mnsync status 2>/dev/null | grep '\"IsB
   echo -ne "Current block: $(su -c "/usr/local/bin/guapcoin-cli getblockcount" "$USER")\\r"
   sleep 1
 done
+
 echo "SYNC complete!"
 sleep 3
 clear
