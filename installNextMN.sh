@@ -181,7 +181,7 @@ read -e -p "Masternode Private Key (e.g. 7edfjLCUzGczZi3JQw8GHp434R9kNY33eFyMGeK
 fi
 
 if [ -z "$MNID" ]; then
-read -e -p "Enter a single digit number for this Masternode's ID#. It must not match the ID# of an existing MN (e.g. if this is your second MN enter '2') : " MNID
+read -e -p "Enter a single digit number for this Masternode's ID#. It must not match the ID# of an existing MN on this VPS (e.g. second MN? enter '2') : " MNID
 fi
 
 if [ -z "$FAIL2BAN" ]; then
