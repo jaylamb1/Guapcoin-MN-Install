@@ -287,7 +287,7 @@ sleep 3
 clear
 
 echo "Your wallet is loaded at /$USERHOME/.guapcoin$MNID, and synce has completed for the new Masternode$MNID"
-sleep 7
+sleep 5
 
 
 clear
