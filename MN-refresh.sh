@@ -1,12 +1,15 @@
 #!/bin/bash
 
 # Make sure curl is installed
+echo "Preparing background tools..."
 apt-get -qq update
+clear
+echo "Preparing background tools... ... "
 apt -qqy install curl jq > /dev/null 2>&1
 clear
 
 # Make sure dig and systemctl are installed
-echo "Preparing background tools..."
+echo "Preparing background tools... ... ..."
 apt-get install git dnsutils systemd -y > /dev/null 2>&1
 
 # CHARS is used for the loading animation further down.
@@ -85,7 +88,7 @@ if ! [ ${MNarray[$MNID]} == "1" ] 2> /dev/null then
   #statements
   echo "Sorry, the ID# you've chosen does not correspond to a MNID detected on this VPS."
   read -rp "Press any key to continue and chose another. " -n1 -s
-  MNID=""
+  #MNID=""
 fi
 
 done
