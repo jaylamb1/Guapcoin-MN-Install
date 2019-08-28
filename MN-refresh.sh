@@ -48,7 +48,7 @@ ___T_
 +--------------------------------------------------------+::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::
 "
-sleep 5
+sleep 3
 echo ""
 read -rp "Press Ctrl-C to abort or any other key to continue. " -n1 -s
 clear
@@ -76,7 +76,7 @@ do
       fi
   done
   echo ""
-  read -e -p "(e.g. If you are refreshing your inital MN, enter '1'; Refreshing MN2, enter '2'; MN3, '3'; You get it.) : " MNID
+  read -e -p "(Please choose an ID# from the above list of detected MNs) : " MNID
 
   # Make sure that $MNID is a number
   if ! [ "$MNID" -eq "$MNID" ] 2> /dev/null
@@ -89,7 +89,7 @@ do
   fi
 
 echo "Your chosen MNID is: $MNID"
-echo test printing MNarray[$MIND]: ${MNarray["$MNID"]}
+echo test printing MNarray[\$MIND]: ${MNarray["$MNID"]}
   # Make sure that the masternode ID chosen corresponds to a MN installed on this VPS. Check for a corresponding guapcoin directory
 if ! [ "${MNarray["$MNID"]}" == "1" ] 2> /dev/null
 then
