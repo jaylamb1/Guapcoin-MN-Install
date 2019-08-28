@@ -82,7 +82,8 @@ do
   if ! [ "$MNID" -eq "$MNID" ] 2> /dev/null
   then
       echo ""
-      echo "Sorry, the ID# must be a single digit integer corresponding to the MNID you want to refresh"
+      echo "Sorry, the ID# must be a single digit integer corresponding to the MNID you want to refresh."
+      echo ""
       read -rp "Press any key to continue. " -n1 -s
       clear
       continue
@@ -95,7 +96,8 @@ echo "Your chosen MNID is: $MNID"
 if ! [ "${MNarray["$MNID"]}" == "1" ] 2> /dev/null
 then
   #statements
-  echo "Sorry, the ID you've chosen does not correspond to a MNID detected on this VPS."
+  echo "Sorry, the ID# you've chosen does not correspond to a MNID detected on this VPS."
+  echo ""
   read -rp "Press any key to continue and chose another. " -n1 -s
   echo ""
   echo ""
@@ -109,5 +111,75 @@ done
 if [[ "$MNID" == "1" ]]; then
   #statements
   MNID=""
-  echo " test guapcoin$MNID"
+  #echo " test guapcoin$MNID"
 fi
+
+USER=root
+USERHOME=`eval echo "~$USER"`
+
+echo "Stopping service for MNID #$MNID"
+
+sudo systemctl stop guapcoin$MNID.service
+
+
+clear
+echo "Refreshing node, please wait."
+
+sleep 5
+
+rm -rf "$USERHOME/.guapcoin$MNID/blocks"
+rm -rf "$USERHOME/.guapcoin$MNID/database"
+rm -rf "$USERHOME/.guapcoin$MNID/chainstate"
+rm -rf "$USERHOME/.guapcoin$MNID/peers.dat"
+
+sudo systemctl start guapcoin$MNID.service
+
+echo "Starting guapcoin$MNID.service, will check status in 10 seconds..."
+sleep 10
+
+clear
+
+if ! systemctl status guapcoin$MNID | grep -q "active (running)"; then
+  echo "ERROR: Failed to start bulwarkd. Please contact support."
+  exit
+fi
+
+echo "Waiting for wallet to load..."
+until su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID getinfo 2>/dev/null | grep -q \"version\"" "$USER"; do
+  sleep 1;
+done
+
+clear
+
+echo "Your masternode is syncing. Please wait for this process to finish."
+echo "This can take a while. Do not close this window."
+echo ""
+
+until [ -n "$(/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID getconnectioncount 2>/dev/null)"  ]; do
+  sleep 1
+done
+
+until su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID mnsync status 2>/dev/null | grep '\"IsBlockchainSynced\": true' > /dev/null" "$USER"; do
+  echo -ne "Current block: $(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID getblockcount" "$USER")\\r"
+  sleep 1
+done
+
+clear
+
+cat << EOL
+
+Now, you need to start your masternode. Follow the steps below:
+1) Please go to your desktop wallet
+2) Click the Masternodes tab
+3) Click 'Start all' at the bottom or select your new node and click 'Start Alias'.
+EOL
+
+read -p "Press Enter to continue after you've done that. " -n1 -s
+
+clear
+
+sleep 1
+
+echo "" && echo "Masternode$MNID refresh completed." && echo ""
+echo "" && echo "Please see details for the refreshed Masternode$MNID below:"
+echo -ne "$(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID masternode status" "$USER")\\r"
