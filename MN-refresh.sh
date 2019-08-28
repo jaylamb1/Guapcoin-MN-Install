@@ -90,7 +90,7 @@ do
 
 echo ""
 echo "Your chosen MNID is: $MNID"
-echo test printing MNarray[\$MIND]: ${MNarray["$MNID"]}
+#echo test printing MNarray[\$MIND]: ${MNarray["$MNID"]}
   # Make sure that the masternode ID chosen corresponds to a MN installed on this VPS. Check for a corresponding guapcoin directory
 if ! [ "${MNarray["$MNID"]}" == "1" ] 2> /dev/null
 then
@@ -105,3 +105,9 @@ then
 fi
 
 done
+
+if ["$MNID" == "1"]; then
+  #statements
+  MNID=""
+  echo " test guapcoin$MNID"
+fi
