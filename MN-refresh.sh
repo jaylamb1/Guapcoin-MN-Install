@@ -106,7 +106,7 @@ fi
 
 done
 
-if ["$MNID" == "1"]
+if [[$MNID == "1"]]
 then
   #statements
   MNID=""
