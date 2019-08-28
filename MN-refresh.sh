@@ -85,10 +85,7 @@ if ! [ ${MNarray[$MNID]} == "1" ] 2> /dev/null then
   #statements
   echo "Sorry, the ID# you've chosen does not correspond to a MNID detected on this VPS."
   read -rp "Press any key to continue and chose another. " -n1 -s
-  let MNID=""
+  MNID=""
 fi
 
 done
-
-#USER=$(ps -o user= -p "$(pgrep guapcoind)")
-#USERHOME=$(eval echo "~$USER")
