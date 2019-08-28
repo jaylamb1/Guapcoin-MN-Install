@@ -97,6 +97,8 @@ then
   #statements
   echo "Sorry, the ID you've chosen does not correspond to a MNID detected on this VPS."
   read -rp "Press any key to continue and chose another. " -n1 -s
+  echo ""
+  echo ""
   MNID=""
 fi
 
