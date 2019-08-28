@@ -151,7 +151,7 @@ done
 
 clear
 
-echo "Your masternode is syncing. Please wait for this process to finish."
+echo "Your masternode MN$MNID is syncing. Please wait for this process to finish."
 echo "This can take a while. Do not close this window."
 echo ""
 
@@ -171,7 +171,7 @@ cat << EOL
 Now, you need to start your masternode. Follow the steps below:
 1) Please go to your desktop wallet
 2) Click the Masternodes tab
-3) Click 'Start all' at the bottom or select your new node and click 'Start Alias'.
+3) Click 'Start all' at the bottom or select your newly refreshed node and click 'Start Alias'.
 EOL
 
 read -p "Press Enter to continue after you've done that. " -n1 -s
