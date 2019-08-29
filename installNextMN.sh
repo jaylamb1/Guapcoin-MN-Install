@@ -180,9 +180,55 @@ if [ -z "$KEY" ]; then
 read -e -p "Masternode Private Key (e.g. 7edfjLCUzGczZi3JQw8GHp434R9kNY33eFyMGeKRymkB56G4324h # THE KEY YOU GENERATED EARLIER) : " KEY
 fi
 
-if [ -z "$MNID" ]; then
-read -e -p "Enter a single digit number for this Masternode's ID#. It must not match the ID# of an existing MN on this VPS (e.g. second MN? enter '2') : " MNID
-fi
+
+while ! [ "$MNID" -eq "$MNID" ] 2> /dev/null
+do
+  MNarray[0]=0 #MNarray is used to idenitfy which MNs(and their corresponding MNIDs) are present
+  MNarray[1]=1 #MN1 (the original MN); It is set to true as it assumed that at least the initial MN is installed
+  echo "Enter the single digit number for this Masternode's ID#. It must not match the ID# of an existing MN on this VPS"
+  echo "MNIDs for active masternodes detected on this VPS are:"
+  #it is assumed that at least the initial masternode is installed
+  echo "1"
+  for (( i = 2; i < 10; i++ )); do
+      FILE=/etc/systemd/system/guapcoin$i.service
+      if test -f "$FILE"; then
+          MNarray[$i]=1
+          echo "$i"
+      fi
+  done
+  echo ""
+  read -e -p "Please choose an ID# for your new Masternode that does not on the list of detected MNs above) : " MNID
+
+  # Make sure that $MNID is a number
+  if ! [ "$MNID" -eq "$MNID" ] 2> /dev/null
+  then
+      echo ""
+      echo "Sorry, the ID# must be a single digit integer."
+      echo ""
+      read -rp "Press any key to continue. " -n1 -s
+      clear
+      continue
+  fi
+
+echo ""
+echo "Your chosen MNID is: $MNID"
+
+  # Make sure that the masternode ID chosen is not already is use on this VPS.
+  if [ "${MNarray["$MNID"]}" == "1" ] 2> /dev/null
+  then
+    #statements
+    echo "Sorry, the ID# you've chosen corresponds to another MN detected on this VPS."
+    echo ""
+    read -rp "Press any key to continue and chose another. " -n1 -s
+    echo ""
+    echo ""
+    MNID=""
+    clear
+    continue
+  fi
+
+done
+
 
 if [ -z "$FAIL2BAN" ]; then
 read -e -p "Install Fail2ban? [Y/n] : " FAIL2BAN
