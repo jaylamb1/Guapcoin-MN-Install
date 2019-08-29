@@ -132,15 +132,25 @@ rm -rf "$USERHOME/.guapcoin$MNID/database"
 rm -rf "$USERHOME/.guapcoin$MNID/chainstate"
 rm -rf "$USERHOME/.guapcoin$MNID/peers.dat"
 
+#backup the conf file just in case
+cp "$USERHOME/.guapcoin$MNID/guapcoin.conf" "$USERHOME/.guapcoin$MNID/guapcoin.conf.backup"
+
+
 sudo systemctl start guapcoin$MNID.service
 
-echo "Starting guapcoin$MNID.service, will check status in 10 seconds..."
-sleep 10
+TimeToWait=40
+echo "Starting guapcoin$MNID.service, will check status in $TimeToWait seconds..."
+
+for (( i = $TimeToWait; i > 0; i-- )); do
+  clear
+  echo "Starting guapcoin$MNID.service, will check status in $i seconds..."
+  sleep 1
+done
 
 clear
 
 if ! systemctl status guapcoin$MNID | grep -q "active (running)"; then
-  echo "ERROR: Failed to start bulwarkd. Please contact support."
+  echo "ERROR: Failed to start guapcoin$MNID.service. Please contact support."
   exit
 fi
 
