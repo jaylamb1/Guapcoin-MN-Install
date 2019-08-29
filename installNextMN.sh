@@ -267,7 +267,7 @@ echo "Starting guapcoin$MNID service"
 sudo systemctl start guapcoin$MNID.service
 
 echo "Waiting for guapcoin$MNID wallet to load..."
-until su -c "/usr/local/bin/guapcoin-cli getinfo 2>/dev/null | grep -q \"version\"" $USER; do
+until su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID getinfo 2>/dev/null | grep -q \"version\"" $USER; do
   sleep 1;
 done
 
@@ -278,7 +278,7 @@ echo "This step can take up to a few hours. Do not close this window."
 
 echo ""
 
-until su -c "/usr/local/bin/guapcoin-cli mnsync status 2>/dev/null | grep '\"IsBlockchainSynced\": true' > /dev/null" "$USER"; do
+until su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID mnsync status 2>/dev/null | grep '\"IsBlockchainSynced\": true' > /dev/null" "$USER"; do
   echo -ne "Current block: $(su -c "/usr/local/bin/guapcoin-cli getblockcount" "$USER")\\r"
   sleep 1
 done

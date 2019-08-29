@@ -16,15 +16,15 @@ clear
 
 # Make sure dig and systemctl are installed
 echo "Preparing background tools... ... ... ..."
+
 # CHARS is used for the loading animation further down.
 CHARS="/-\|"
 clear
 
 MNID=""
-#GUAPDIR=""
 
 echo "
-___T_
+ ___T_
 | o o |
 |__-__|
 /| []|\\
