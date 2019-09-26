@@ -317,6 +317,20 @@ until su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.con
   sleep 1;
 done
 
+echo "Your wallet is loaded at /$USERHOME/.guapcoin$MNID"
+
+clear
+
+
+cat << EOL
+Now, you need to start your masternode. Follow the steps below:
+1) Please go to your desktop wallet
+2) Click the Masternodes tab
+3) Click 'Start all' at the bottom or select your new node and click 'Start Alias'.
+EOL
+
+read -p "Press Enter to continue after you've done that. " -n1 -s
+
 clear
 
 echo "Your masternode is syncing. Please wait for this process to finish."
@@ -333,20 +347,9 @@ echo "SYNC complete!"
 sleep 3
 clear
 
-echo "Your wallet is loaded at /$USERHOME/.guapcoin$MNID, and synce has completed for the new Masternode$MNID"
+echo "Synce has completed for the new Masternode MNID#$MNID"
 sleep 5
 
-
-clear
-
-cat << EOL
-Now, you need to start your masternode. Follow the steps below:
-1) Please go to your desktop wallet
-2) Click the Masternodes tab
-3) Click 'Start all' at the bottom or select your new node and click 'Start Alias'.
-EOL
-
-read -p "Press Enter to continue after you've done that. " -n1 -s
 
 clear
 
