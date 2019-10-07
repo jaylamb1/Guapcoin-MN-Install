@@ -120,10 +120,12 @@ BlockHeight=$(printf '%14s' $BlockHeight)
 echo "Percentage of total GUAP Money Supply           : $Perc%"
 echo ""
 echo "Total number of GUAP masternodes                : $MNCount"
+MNCount= $(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["MNCount"]))')
+n= $(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["n"]))')
 echo ""
 echo "n= $n"
 echo "MNCount= $(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["MNCount"]))')"
-echo "Percentage of total GUAP Voting Power           : $Perc2%"
+echo "Percentage of total GUAP Voting Power           : $((n / MNCount))%"
 echo ""
 echo "GUAP Chain Block Count                          : $BlockHeight"
 echo ""
