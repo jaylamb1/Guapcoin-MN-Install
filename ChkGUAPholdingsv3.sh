@@ -106,6 +106,10 @@ shopt -u extglob
 #right justify
 MNCount=$(printf '%14s' $MNCount)
 
+#Get percentage of total GUAP voting power
+n=$((n-2))
+Perc2=$(python -c 'import os; print "{:>13,.2f}".format((float(os.environ["MN_Total"]) / float(os.environ["MNCount"]) * 100))')
+
 
 #Get current block count/height
 parm9="http://159.65.221.180:3001/api/getblockcount"
@@ -116,6 +120,8 @@ BlockHeight=$(printf '%14s' $BlockHeight)
 echo "Percentage of total GUAP Money Supply           : $Perc%"
 echo ""
 echo "Total number of GUAP masternodes                : $MNCount"
+echo ""
+echo "Percentage of total GUAP Voting Power           : $Perc2%"
 echo ""
 echo "GUAP Chain Block Count                          : $BlockHeight"
 echo ""
