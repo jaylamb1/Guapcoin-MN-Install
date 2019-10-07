@@ -108,7 +108,7 @@ MNCount=$(printf '%14s' $MNCount)
 
 #Get percentage of total GUAP voting power
 n=$((n-2))
-Perc2=$(python -c 'import os; print "{:>13,.2f}".format((float(os.environ["MN_Total"]) / float(os.environ["MNCount"]) * 100))')
+Perc2=$(python -c 'import os; print "{:>13,.0f}".format((float(os.environ["MN_Total"]) / float(os.environ["MNCount"]) * 100))')
 
 
 #Get current block count/height
@@ -122,7 +122,7 @@ echo ""
 echo "Total number of GUAP masternodes                : $MNCount"
 echo ""
 echo "n= $n"
-echo "MNCount= $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MNCount"]))')"
+echo "MNCount= $(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["MNCount"]))')"
 echo "Percentage of total GUAP Voting Power           : $Perc2%"
 echo ""
 echo "GUAP Chain Block Count                          : $BlockHeight"
