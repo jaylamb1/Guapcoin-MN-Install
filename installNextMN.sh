@@ -339,19 +339,15 @@ echo "This step can take up to a few hours. Do not close this window."
 echo ""
 
 until su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID mnsync status 2>/dev/null | grep '\"IsBlockchainSynced\": true' > /dev/null" "$USER"; do
-  echo -ne "Current block: $(su -c "/usr/local/bin/guapcoin-cli getblockcount" "$USER")\\r"
+  echo -ne "Current block: $(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID getblockcount" "$USER")\\r"
   sleep 1
 done
 
 echo "SYNC complete!"
+echo "Sync has completed for the new Masternode MNID#$MNID"
 sleep 3
 clear
 
-echo "Synce has completed for the new Masternode MNID#$MNID"
-sleep 5
-
-
-clear
 
 echo "" && echo "Masternode$MNID setup completed." && echo ""
 echo "" && echo "Please see details for the new Masternode$MNID below:"
