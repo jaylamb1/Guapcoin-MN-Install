@@ -17,6 +17,7 @@ echo "-----------------------------------------------------------------"
 
 #Print timestamp in Day Date(MM-DD-YYYY) Time(HH:MMam) Timezone format
 d=$(TZ=":US/Eastern" date +'%a %m-%d-%Y %I:%M%P EST')
+d_epoch=$(date -d "${d}" +"%s")
 echo "Timestamp : $d"
 echo ""
 
@@ -104,14 +105,16 @@ Perc=$(python -c 'import os; print "{:>13,.2f}".format((float(os.environ["MN_Tot
 
 #Print out total holding and total GUAP money supply
 echo "-----------------------------------------------------------------"
-echo "  Total Current GUAP Holdings                           : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
+echo "  Total Current GUAP Holdings                    : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
 
 #Save MN_Total and timestamp to file output.text
 echo "Test $(date +"%s") $MN_Total" | sudo tee output.text
 echo ""
 echo "-----------------------------------------------------------------"
-echo "  GUAP Holdings @ last check [$(date -d  @$LastGuapTime +'%m-%d-%Y %I:%M%P')]          : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["LastGuapTotal"]))')"
-
+GUAPearned=$(python -c 'import os; print "{0:>14,.3f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
+TimeElapsed=$(($LastGuapTime-$d_epoch))
+echo "  GUAP earned since last check [$(date -d  @$LastGuapTime +'%m-%d-%Y %I:%M%P')]       : $GUAPearned"
+echo "  GUAP average earn rate is                      : $GUAPearned per $(date -d  @$TimeElapsed +'%T')"
 
 
 echo "-----------------------------------------------------------------"
