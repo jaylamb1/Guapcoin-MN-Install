@@ -112,7 +112,7 @@ echo "Test $(date +"%s") $MN_Total" | sudo tee output.text
 echo ""
 echo "-----------------------------------------------------------------"
 GUAPearned=$(python -c 'import os; print "{0:>14,.3f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
-TimeElapsed=$(($LastGuapTime-$d_epoch))
+TimeElapsed=$((LastGuapTime-d_epoch))
 echo "  GUAP earned since last check [$(date -d  @$LastGuapTime +'%m-%d-%Y %I:%M%P')]       : $GUAPearned"
 echo "  GUAP average earn rate is                      : $GUAPearned per $(date -d  @$TimeElapsed +'%T')"
 
