@@ -16,8 +16,10 @@ echo "                   [GUAP Holdings Snaphot]                       "
 echo "-----------------------------------------------------------------"
 
 #Print timestamp in Day Date(MM-DD-YYYY) Time(HH:MMam) Timezone format
-d=$(TZ=":US/Eastern" date +'%a %m-%d-%Y %I:%M%P EST')
 d_epoch=$(date +"%s")
+#d=$(TZ=":US/Eastern" date +'%a %m-%d-%Y %I:%M%P EST')
+d=$(date -d  @$d_epoch +'%a %m-%d-%Y %I:%M%P EST')
+
 echo "Timestamp : $d"
 echo "TEST $d_epoch"
 echo ""
