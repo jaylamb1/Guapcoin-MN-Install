@@ -140,7 +140,7 @@ BlockHeight=$(printf '%14s' $BlockHeight)
 echo "Percentage of total GUAP Money Supply           : $Perc%"
 echo ""
 
-echo "Average GUAP generated in last 24hrs            : TEST"
+echo "GUAP Earned: $(date -d  @$LastGuapTime +%a %m-%d-%Y %I:%M%P EST):$LastGuapTotal -> $d: $GUAPtotal"
 echo ""
 
 echo "Total number of GUAP masternodes                : $MNCount"
