@@ -27,6 +27,7 @@ declare -a MNLabelArray
 #capture the external file
 filename=$1
 
+
 #Clean up the file, remove bash comments and empty lines (creates a backup before removal)
 sed -i".bkup" 's/^#.*$//' $filename #remove comments
 sed -i '/^$/d' $filename #remove empty lines
@@ -39,6 +40,16 @@ MNLabelArray[$n]=$label
 MNArray[$n]=$address
 n=$((n+1))
 done < $filename
+
+
+#Read in last GUAPtotal and timestamp from output.text
+for line in `cat /root/output.text`
+do
+LastGuapTime=$line
+LastGuapTotal=$line
+echo "LastGuapTime = $LastGuapTime"
+echo "LastGuapTotal = $LastGuapTotal"
+done
 
 echo ""
 
@@ -58,6 +69,7 @@ do
   tempVar=${Addr[$n]}
   tempLabel=${MNLabelArray[$n]}
   echo "  $tempLabel        $i : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["tempVar"]))')" | sudo tee -a output.text
+  echo "$tempLabel $tempVar $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["tempVar"]))')"
   echo ""
 
   ((++n))
@@ -76,7 +88,6 @@ do
   ((++n))
 done
 
-
 #Get total current GUAP chain money supply
 parm7="http://159.65.221.180:3001/ext/getmoneysupply"
 
@@ -88,6 +99,9 @@ Perc=$(python -c 'import os; print "{:>13,.2f}".format((float(os.environ["MN_Tot
 #Print out total holding and total GUAP money supply
 echo "-----------------------------------------------------------------"
 echo "  Total GUAP Holdings                           : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
+
+#Save MN_Total and timestamp to file output.text
+echo "$d $GUAPTotal"
 
 echo "-----------------------------------------------------------------"
 echo "-----------------------------------------------------------------"
@@ -119,6 +133,10 @@ BlockHeight=$(printf '%14s' $BlockHeight)
 #Print out percentage of GUAP money supply, Masternode count, and GUAP chain block count/height
 echo "Percentage of total GUAP Money Supply           : $Perc%"
 echo ""
+
+echo "Average GUAP generated in last 24hrs            : TEST"
+echo ""
+
 echo "Total number of GUAP masternodes                : $MNCount"
 MNCount=$(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["MNCount"]))')
 n=$(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["n"]))')
