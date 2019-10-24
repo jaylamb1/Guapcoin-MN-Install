@@ -43,7 +43,7 @@ done < $filename
 
 
 #Read in last GUAPtotal and timestamp from output.text
-$LastGuapFile = "/root/output.text"
+$LastGuapFile ="/root/output.text"
 while read -r time total; do
   LastGuapTime=$time
   LastGuapTotal=$total
