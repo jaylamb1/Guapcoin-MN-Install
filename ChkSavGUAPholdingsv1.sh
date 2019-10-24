@@ -100,7 +100,7 @@ echo "-----------------------------------------------------------------"
 echo "  Total GUAP Holdings                           : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
 
 #Save MN_Total and timestamp to file output.text
-echo "$(date +"%Y-%m-%d %T") $GUAPTotal" | sudo tee -a output.text
+echo "$(date -d "$d" +"%s") $GUAPTotal" | sudo tee -a output.text
 
 echo "-----------------------------------------------------------------"
 echo "-----------------------------------------------------------------"
