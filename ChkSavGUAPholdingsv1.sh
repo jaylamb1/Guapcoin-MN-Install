@@ -46,8 +46,8 @@ LastGuapFile="/root/output.text"
 while read -r time total; do
   LastGuapTime=$time
   LastGuapTotal=$total
-  echo "LastGuapTime = $LastGuapTime"
-  echo "LastGuapTotal = $LastGuapTotal"
+  echo "Test LastGuapTime = $LastGuapTime"
+  echo "Test LastGuapTotal = $LastGuapTotal"
 done < $LastGuapFile
 
 #for line in `cat /root/output.text`
@@ -104,12 +104,16 @@ Perc=$(python -c 'import os; print "{:>13,.2f}".format((float(os.environ["MN_Tot
 
 #Print out total holding and total GUAP money supply
 echo "-----------------------------------------------------------------"
-echo "  Total GUAP Holdings                           : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
+echo "  Total Current GUAP Holdings                           : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
 
 #Save MN_Total and timestamp to file output.text
-echo "$(date +"%s") $MN_Total" | sudo tee output.text
-
+echo "Test $(date +"%s") $MN_Total" | sudo tee output.text
+echo ""
 echo "-----------------------------------------------------------------"
+echo "  GUAP Holdings @ last check [$(date -d  @$LastGuapTime +'%m-%d-%Y %I:%M%P')]          : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["LastGuapTotal"]))')"
+
+
+
 echo "-----------------------------------------------------------------"
 echo ""
 echo "Total GUAP Money Supply                         : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["GUAPTotal"]))')"
