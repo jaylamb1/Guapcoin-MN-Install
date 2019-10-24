@@ -19,6 +19,7 @@ echo "-----------------------------------------------------------------"
 d=$(TZ=":US/Eastern" date +'%a %m-%d-%Y %I:%M%P EST')
 d_epoch=$(date -d "${d}" +"%s")
 echo "Timestamp : $d"
+echo "TEST $d_epoch"
 echo ""
 
 #Create arrays to hold GUAP addresses and address labels from file
