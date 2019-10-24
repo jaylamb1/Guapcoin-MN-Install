@@ -22,7 +22,7 @@ d_formatted=$(TZ=":US/Eastern" date -d @$d +'%a %m-%d-%Y %I:%M%P EST')
 
 echo "Timestamp : $d_formatted"
 echo ""
-echo "Test d: $d"
+#echo "Test d: $d"
 #Create arrays to hold GUAP addresses and address labels from file
 declare -a MNArray
 declare -a MNLabelArray
@@ -49,8 +49,8 @@ LastGuapFile="/root/output.text"
 while read -r time total; do
   LastGuapTime=$time
   LastGuapTotal=$total
-  echo "Test LastGuapTime = $LastGuapTime"
-  echo "Test LastGuapTotal = $LastGuapTotal"
+  #echo "Test LastGuapTime = $LastGuapTime"
+  #echo "Test LastGuapTotal = $LastGuapTotal"
 done < $LastGuapFile
 
 #for line in `cat /root/output.text`
@@ -110,7 +110,7 @@ echo "-----------------------------------------------------------------"
 echo "  Total Current GUAP Holdings                   : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
 
 #Save MN_Total and timestamp to file output.text
-echo "$(date +"%s") $MN_Total" | sudo tee output.text
+echo "$d $MN_Total" > sudo tee output.text
 echo ""
 echo "-----------------------------------------------------------------"
 GUAPearned=$(python -c 'import os; print "{0:>5,.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
@@ -118,15 +118,15 @@ GUAPearned=$(python -c 'import os; print "{0:>5,.0f}".format((float(os.environ["
 #TimeElapsed=$((d_epoch-LastGuapTime))
 d_var=$(TZ=":US/Eastern" date -d @$d +'%Y-%m-%dT%H:%M:%S')
 LastGuapTime_var=$(TZ=":US/Eastern" date -d @$LastGuapTime +'%Y-%m-%dT%H:%M:%S')
-echo "d= $d_var"
-echo "LastGuapTime= $LastGuapTime_var"
+#echo "d= $d_var"
+#echo "LastGuapTime= $LastGuapTime_var"
 
 TimeElapsed=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%dd%Hh%Ss')
-echo "Time elasped is $TimeElapsed"
+#echo "Time elasped is $TimeElapsed"
 #TimeElapsed_s=$(date -d  @$TimeElapsed +'%S')
 #echo "  GUAP earned since last check @ $(date -d  @$LastGuapTime +'%m/%d %I:%M%P')  : $GUAPearned in last $(date -d  @$TimeElapsed +'%M%S') min"
 echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M%P')"
-echo "  GUAP earned since @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M%P')             : $GUAPearned in last $TimeElapsed"
+echo "  GUAP earned since last check             :$GUAPearned in last $TimeElapsed"
 #echo "  GUAP average earn rate is                        : $GUAPearned in last $(date -d  @$TimeElapsed +'%M') min"
 
 
