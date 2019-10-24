@@ -116,7 +116,7 @@ echo "-----------------------------------------------------------------"
 GUAPearned=$(python -c 'import os; print "{0:>5,.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
 
 #TimeElapsed=$((d_epoch-LastGuapTime))
-d_var=$(date -d @$d +'%Y-%m-%dT%H:%M:%S')
+d_var=$(date -d $d +'%Y-%m-%dT%H:%M:%S')
 LastGuapTime_var=$(date -d @$LastGuapTime +'%Y-%m-%dT%H:%M:%S')
 echo "d= $d_var"
 echo "LastGuapTime= $LastGuapTime_var"
