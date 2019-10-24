@@ -16,14 +16,13 @@ echo "                   [GUAP Holdings Snaphot]                       "
 echo "-----------------------------------------------------------------"
 
 #Print timestamp in Day Date(MM-DD-YYYY) Time(HH:MMam) Timezone format
-d_epoch=$(TZ=":US/Eastern" date +"%s")
-#d=$(TZ=":US/Eastern" date +'%a %m-%d-%Y %I:%M%P EST')
-d=$(date -d  @$d_epoch +'%a %m-%d-%Y %I:%M%P EST')
+#d_epoch=$(TZ=":US/Eastern" date +"%s")
+d=$(TZ=":US/Eastern" date)
+d_formatted=$(date -d  @$d +'%a %m-%d-%Y %I:%M%P EST')
 
-echo "Timestamp : $d"
-echo "TEST $d_epoch"
+echo "Timestamp : $d_formatted"
 echo ""
-
+echo "Test d : $d"
 #Create arrays to hold GUAP addresses and address labels from file
 declare -a MNArray
 declare -a MNLabelArray
@@ -115,13 +114,14 @@ echo "$(date +"%s") $MN_Total" | sudo tee output.text
 echo ""
 echo "-----------------------------------------------------------------"
 GUAPearned=$(python -c 'import os; print "{0:>5,.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
-#TimeElapsed=$((d_epoch-LastGuapTime))
-d=$(date -d @$d_epoch +'%Y-%m-%dT%H:%M:%S')
-LastGuapTime=$(date -d @$LastGuapTime +'%Y-%m-%dT%H:%M:%S')
-echo "d=$d"
-echo "LastGuapTime=$LastGuapTime"
 
-TimeElapsed=$(dateutils.ddiff $d $LastGuapTime -f '&dd &Hh &Ss')
+#TimeElapsed=$((d_epoch-LastGuapTime))
+d_var=$(date -d @$d +'%Y-%m-%dT%H:%M:%S')
+LastGuapTime_var=$(date -d @$LastGuapTime +'%Y-%m-%dT%H:%M:%S')
+echo "d=$d_var"
+echo "LastGuapTime=$LastGuapTime_var"
+
+TimeElapsed=$(dateutils.ddiff $d_var $LastGuapTime_var -f '&dd &Hh &Ss')
 #TimeElapsed_s=$(date -d  @$TimeElapsed +'%S')
 #echo "  GUAP earned since last check @ $(date -d  @$LastGuapTime +'%m/%d %I:%M%P')  : $GUAPearned in last $(date -d  @$TimeElapsed +'%M%S') min"
 echo "  GUAP earned since last check @ $(date -d  @$LastGuapTime +'%m/%d %I:%M%P')  : $GUAPearned in last $TimeElapsed"
