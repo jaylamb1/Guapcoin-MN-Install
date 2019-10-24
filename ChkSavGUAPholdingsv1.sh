@@ -114,10 +114,10 @@ echo "  Total Current GUAP Holdings                    : $(python -c 'import os;
 echo "$(date +"%s") $MN_Total" | sudo tee output.text
 echo ""
 echo "-----------------------------------------------------------------"
-GUAPearned=$(python -c 'import os; print "{0:>5,.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
+GUAPearned=$(python -c 'import os; print "{0:>5,.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
 TimeElapsed=$((d_epoch-LastGuapTime))
-echo "  GUAP earned since last check @ $(date -d  @$LastGuapTime +'%m-%d-%Y %I:%M%P')  : $GUAPearned"
-echo "  GUAP average earn rate is                           : $GUAPearned in $(date -d  @$TimeElapsed +'%T')"
+echo "  GUAP earned since last check @ $(date -d  @$LastGuapTime +'%m/%d %I:%M%P')    : $GUAPearned"
+echo "  GUAP average earn rate is                        : $GUAPearned in $(date -d  @$TimeElapsed +'%M') min"
 
 
 echo "-----------------------------------------------------------------"
