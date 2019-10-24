@@ -26,7 +26,6 @@ declare -a MNLabelArray
 
 #capture the external file
 filename=$1
-$LastGuapFile=$2
 
 #Clean up the file, remove bash comments and empty lines (creates a backup before removal)
 sed -i".bkup" 's/^#.*$//' $filename #remove comments
@@ -43,7 +42,7 @@ done < $filename
 
 
 #Read in last GUAPtotal and timestamp from output.text
-#$LastGuapFile ="/root/output.text"
+LastGuapFile="/root/output.text"
 while read -r time total; do
   LastGuapTime=$time
   LastGuapTotal=$total
