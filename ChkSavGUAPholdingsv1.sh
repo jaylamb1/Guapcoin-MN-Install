@@ -43,13 +43,21 @@ done < $filename
 
 
 #Read in last GUAPtotal and timestamp from output.text
-for line in `cat /root/output.text`
-do
-LastGuapTime=$line
-LastGuapTotal=$line
-echo "LastGuapTime = $LastGuapTime"
-echo "LastGuapTotal = $LastGuapTotal"
-done
+$LastGuapFile = "/root/output.text"
+while read -r time total; do
+  LastGuapTime=$time
+  LastGuapTotal=$total
+  echo "LastGuapTime = $LastGuapTime"
+  echo "LastGuapTotal = $LastGuapTotal"
+done < $LastGuapFile
+
+#for line in `cat /root/output.text`
+#do
+#LastGuapTime=$line
+#LastGuapTotal=$line
+#echo "LastGuapTime = $LastGuapTime"
+#echo "LastGuapTotal = $LastGuapTotal"
+#done
 
 echo ""
 
