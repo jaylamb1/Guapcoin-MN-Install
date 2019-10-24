@@ -110,7 +110,7 @@ echo "-----------------------------------------------------------------"
 echo "  Total Current GUAP Holdings                   : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
 
 #Save MN_Total and timestamp to file output.text
-echo "$d $MN_Total" > sudo tee output.text
+echo "$d $MN_Total" > /root/output.text
 echo ""
 echo "-----------------------------------------------------------------"
 GUAPearned=$(python -c 'import os; print "{0:,.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
