@@ -57,7 +57,7 @@ do
   Addr[$n]=$(curl -s -X GET $parm)
   tempVar=${Addr[$n]}
   tempLabel=${MNLabelArray[$n]}
-  echo "  $tempLabel        $i : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["tempVar"]))')" | tee -a output.text
+  echo "  $tempLabel        $i : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["tempVar"]))')" | sudo tee -a output.text
   echo ""
 
   ((++n))
