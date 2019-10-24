@@ -107,7 +107,7 @@ echo "-----------------------------------------------------------------"
 echo "  Total GUAP Holdings                           : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
 
 #Save MN_Total and timestamp to file output.text
-echo "$(date +"%s") $GUAPTotal" | sudo tee output.text
+echo "$(date +"%s") $MN_Total" | sudo tee output.text
 
 echo "-----------------------------------------------------------------"
 echo "-----------------------------------------------------------------"
@@ -140,7 +140,7 @@ BlockHeight=$(printf '%14s' $BlockHeight)
 echo "Percentage of total GUAP Money Supply           : $Perc%"
 echo ""
 
-echo "GUAP Earned: $(date -d  @$LastGuapTime +'%a %m-%d-%Y %I:%M%P EST'):$LastGuapTotal -> $d: $GUAPtotal"
+echo "GUAP Earned: $(date -d  @$LastGuapTime +'%a %m-%d-%Y %I:%M%P EST'):$LastGuapTotal -> $d: $MN_Total"
 echo ""
 
 echo "Total number of GUAP masternodes                : $MNCount"
