@@ -68,8 +68,7 @@ do
   Addr[$n]=$(curl -s -X GET $parm)
   tempVar=${Addr[$n]}
   tempLabel=${MNLabelArray[$n]}
-  echo "  $tempLabel        $i : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["tempVar"]))')" | sudo tee -a output.text
-  echo "$tempLabel $tempVar $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["tempVar"]))')"
+  echo "  $tempLabel        $i : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["tempVar"]))')"
   echo ""
 
   ((++n))
@@ -101,7 +100,7 @@ echo "-----------------------------------------------------------------"
 echo "  Total GUAP Holdings                           : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
 
 #Save MN_Total and timestamp to file output.text
-echo "$d $GUAPTotal"
+echo "$d $GUAPTotal" | sudo tee -a output.text
 
 echo "-----------------------------------------------------------------"
 echo "-----------------------------------------------------------------"
