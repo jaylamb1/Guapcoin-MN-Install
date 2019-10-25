@@ -160,9 +160,6 @@ BlockHeight=$(printf '%14s' $BlockHeight)
 echo "Percentage of total GUAP Money Supply           : $Perc%"
 echo ""
 
-echo "GUAP Earned: $(date -d  @$LastGuapTime +'%a %m-%d-%Y %I:%M%P EST'):$LastGuapTotal -> $d: $MN_Total"
-echo ""
-
 echo "Total number of GUAP masternodes                : $MNCount"
 MNCount=$(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["MNCount"]))')
 n=$(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["n"]))')
