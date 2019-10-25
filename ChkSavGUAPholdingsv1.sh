@@ -129,7 +129,7 @@ echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M%P'
 echo "  GUAP earned since:  [$GUAPearned GUAP in last $TimeElapsed]"
 
 TimeElapsed2=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
-GUAPearnRate=$(python -c 'import os; print "{0:,.0f}".format((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsed2"])))')
+GUAPearnRate=$(python -c 'import os; print "{0:>8,.0f}".format((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsed2"])))')
 #echo "  GUAP average earn rate is                        : $GUAPearned in last $(date -d  @$TimeElapsed +'%M') min"
 echo "  Earn rate        :   [$GUAPearnRate GUAP/second]"
 
