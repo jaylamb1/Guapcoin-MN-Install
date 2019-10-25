@@ -121,7 +121,7 @@ LastGuapTime_var=$(TZ=":US/Eastern" date -d @$LastGuapTime +'%Y-%m-%dT%H:%M:%S')
 #echo "d= $d_var"
 #echo "LastGuapTime= $LastGuapTime_var"
 
-TimeElapsed=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H:%M:%S')
+TimeElapsed=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%Hh:%Mm:%Ss')
 #echo "Time elasped is $TimeElapsed"
 #TimeElapsed_s=$(date -d  @$TimeElapsed +'%S')
 #echo "  GUAP earned since last check @ $(date -d  @$LastGuapTime +'%m/%d %I:%M%P')  : $GUAPearned in last $(date -d  @$TimeElapsed +'%M%S') min"
