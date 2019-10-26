@@ -133,8 +133,11 @@ echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M%P'
 echo "  GUAP earned since:  [$GUAPearned GUAP in last $TimeElapsed]"
 
 TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
+echo "TimeElapsedMin=$TimeElapsedMin"
 TimeElapsedHr=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H')
+echo "TimeElapsedHr=$TimeElapsedHr"
 TimeElapsedSec=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
+echo "TimeElapsedSec=$TimeElapsedSec"
 
 if [ "$GUAPearned" == "0" ] 2> /dev/null; then
   echo "  Earn rate        :  [0 GUAP/hour   ]"
