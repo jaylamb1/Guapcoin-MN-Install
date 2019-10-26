@@ -135,13 +135,22 @@ echo "  GUAP earned since:  [$GUAPearned GUAP in last $TimeElapsed]"
 TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
 TimeElapsedHr=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H')
 TimeElapsedSec=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
-GUAPearnRateM=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedMin"]))))')
-GUAPearnRateH=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedHr"]))))')
-GUAPearnRateS=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedSec"]))))')
-#echo "  GUAP average earn rate is                        : $GUAPearned in last $(date -d  @$TimeElapsed +'%M') min"
-echo "  Earn rate        :  [$GUAPearnRateHr GUAP/hour ]"
-echo "                   :  [$GUAPearnRateMin GUAP/minute ]"
-echo "                   :  [$GUAPearnRateSec GUAP/second ]"
+
+if [ "$GUAPearned" == "0" ] 2> /dev/null; then
+  echo "  Earn rate        :  [0 GUAP/hour   ]"
+  echo "                   :  [0 GUAP/minute ]"
+  echo "                   :  [0 GUAP/second ]"
+else
+  GUAPearnRateM=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedMin"]))))')
+  GUAPearnRateH=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedHr"]))))')
+  GUAPearnRateS=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedSec"]))))')
+  #echo "  GUAP average earn rate is                        : $GUAPearned in last $(date -d  @$TimeElapsed +'%M') min"
+  echo "  Earn rate        :  [$GUAPearnRateHr GUAP/hour   ]"
+  echo "                   :  [$GUAPearnRateMin GUAP/minute ]"
+  echo "                   :  [$GUAPearnRateSec GUAP/second ]"
+fi
+
+
 echo "-----------------------------------------------------------------"
 echo ""
 echo "Total GUAP Money Supply                         : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["GUAPTotal"]))')"
