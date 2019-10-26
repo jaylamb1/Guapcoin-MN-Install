@@ -133,8 +133,8 @@ echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M%P'
 echo "  GUAP earned since:  [$GUAPearned GUAP in last $TimeElapsed]"
 
 TimeElapsedSec=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
-TimeElapsedMin=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / 60)))')
-TimeElapsedHr=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / 3600)))')
+#TimeElapsedMin=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / 60)))')
+#TimeElapsedHr=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / 3600)))')
 
 #echo "TimeElapsedSec=$TimeElapsedSec"
 
@@ -146,7 +146,7 @@ TimeElapsedHr=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.envi
 #  echo "  Earn rate        :  [$GUAPearnRateH GUAP/hour   ]"
 #  echo "                   :  [$GUAPearnRateM GUAP/minute ]"
 #  echo "                   :  [$GUAPearnRateS GUAP/second ]"
-echo "  Earn rate        :  [$GUAPearnRateH GUAP/second   ]"
+echo "  Earn rate        :  [$GUAPearnRateS GUAP/second   ]"
 
 
 echo "-----------------------------------------------------------------"
