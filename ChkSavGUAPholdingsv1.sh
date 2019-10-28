@@ -140,14 +140,14 @@ if [[ $TimeElpsedHr > '0' ]]; then
   echo "TimeElapsedHr = $TimeElapsedHr"
   echo "TimeElapsedHr >0"
   GUAPearnRateH=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedHr"]))))')
-  echo "  Earn rate/hr     :  [$GUAPearnRateS GUAP/hour     ]"
+  echo "  Earn rate/hr     :  [$GUAPearnRateH GUAP/hour     ]"
 fi
 
 if [[ $TimeElapsedMin > '0' ]]; then
   echo "TimeElapsedMin = $TimeElapsedMin"
   echo "TimeElapsedMin > 0"
   GUAPearnRateM=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedMin"]))))')
-  echo "  Earn rate/min    :  [$GUAPearnRateS GUAP/minute   ]"
+  echo "  Earn rate/min    :  [$GUAPearnRateM GUAP/minute   ]"
 fi
 
 
