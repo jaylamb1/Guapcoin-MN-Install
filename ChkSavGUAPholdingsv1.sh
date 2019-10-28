@@ -136,16 +136,20 @@ TimeElapsedSec=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
 TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
 TimeElapsedHr=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H')
 
+if [[ $TimeElpsedHr > '0' ]]; then
+  echo "TimeElapsedHr = $TimeElapsedHr"
+  echo "TimeElapsedHr >0"
+  GUAPearnRateH=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedHr"]))))')
+  echo "  Earn rate/hr     :  [$GUAPearnRateS GUAP/hour     ]"
+fi
 
 if [[ $TimeElapsedMin > '0' ]]; then
   echo "TimeElapsedMin = $TimeElapsedMin"
   echo "TimeElapsedMin > 0"
+  GUAPearnRateM=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedMin"]))))')
+  echo "  Earn rate/min    :  [$GUAPearnRateS GUAP/minute   ]"
 fi
 
-if [[ $TimeElpsedHr > '0' ]]; then
-  echo "TimeElapsedHr = $TimeElapsedHr"
-  echo "TimeElapsedHr >0"
-fi
 
 #TimeElapsedMin=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / 60)))')
 #TimeElapsedHr=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / 3600)))')
@@ -160,7 +164,7 @@ fi
 #  echo "  Earn rate        :  [$GUAPearnRateH GUAP/hour   ]"
 #  echo "                   :  [$GUAPearnRateM GUAP/minute ]"
 #  echo "                   :  [$GUAPearnRateS GUAP/second ]"
-echo "  Earn rate        :  [$GUAPearnRateS GUAP/second   ]"
+echo "  Earn rate/sec    :  [$GUAPearnRateS GUAP/second   ]"
 
 
 echo "-----------------------------------------------------------------"
