@@ -137,8 +137,8 @@ TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
 TimeElapsedHr=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H')
 
 if [[ $TimeElpsedHr > '0' ]]; then
-  #echo "TimeElapsedHr = $TimeElapsedHr"
-  #echo "TimeElapsedHr >0"
+  echo "TimeElapsedHr = $TimeElapsedHr"
+  echo "TimeElapsedHr >0"
   GUAPearnRateH=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / float(os.environ["TimeElapsedHr"]))))')
   echo "  Earn rate/hr     :  [$GUAPearnRateH GUAP/hour     ]"
 fi
