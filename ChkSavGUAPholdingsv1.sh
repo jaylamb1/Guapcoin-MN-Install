@@ -142,7 +142,7 @@ if [[ $TimeElapsedMin > '0' ]]; then
   echo "TimeElapsedMin > 0"
 fi
 
-if [[$TimeElpsedHr > '0']]; then
+if [[ $TimeElpsedHr > '0' ]]; then
   echo "TimeElapsedHr = $TimeElapsedHr"
   echo "TimeElapsedHr >0"
 fi
