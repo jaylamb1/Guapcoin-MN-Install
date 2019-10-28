@@ -133,6 +133,19 @@ echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M%P'
 echo "  GUAP earned since:  [$GUAPearned GUAP in last $TimeElapsed]"
 
 TimeElapsedSec=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
+TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
+TimeElapsedHr=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H')
+
+if [$TimeElapsedMin > '0'] then
+  echo "TimeElapsedMin = $TimeElapsedMin"
+  echo "TimeElapsedMin >0"
+fi
+
+if [$TimeElapsedHr > '0'] then
+  echo "TimeElapsedHr = $TimeElapsedHr"
+  echo "TimeElapsedHr >0"
+fi
+
 #TimeElapsedMin=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / 60)))')
 #TimeElapsedHr=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / 3600)))')
 
