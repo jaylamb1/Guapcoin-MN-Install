@@ -136,12 +136,13 @@ TimeElapsedSec=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
 TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
 TimeElapsedHr=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H')
 
-if [$TimeElapsedMin > '0'] then
+
+if [[ $TimeElapsedMin > '0' ]]; then
   echo "TimeElapsedMin = $TimeElapsedMin"
-  echo "TimeElapsedMin >0"
+  echo "TimeElapsedMin > 0"
 fi
 
-if [$TimeElapsedHr > '0'] then
+if [[]$TimeElpsedHr > '0']]; then
   echo "TimeElapsedHr = $TimeElapsedHr"
   echo "TimeElapsedHr >0"
 fi
