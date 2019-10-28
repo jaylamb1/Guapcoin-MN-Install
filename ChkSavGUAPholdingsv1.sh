@@ -18,7 +18,7 @@ echo "-----------------------------------------------------------------"
 #Print timestamp in Day Date(MM-DD-YYYY) Time(HH:MMam) Timezone format
 #d_epoch=$(TZ=":US/Eastern" date +"%s")
 d=$(TZ=":US/Eastern" date +"%s")
-d_formatted=$(TZ=":US/Eastern" date -d @$d +'%a %m-%d-%Y %I:%M%P EST')
+d_formatted=$(TZ=":US/Eastern" date -d @$d +'%a %m-%d-%Y %I:%M:%S%P EST')
 
 echo "Timestamp : $d_formatted"
 echo ""
@@ -125,7 +125,7 @@ TimeElapsed=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%dd:%Hh:%Mm:%Ss')
 #echo "Time elasped is $TimeElapsed"
 #TimeElapsed_s=$(date -d  @$TimeElapsed +'%S')
 #echo "  GUAP earned since last check @ $(date -d  @$LastGuapTime +'%m/%d %I:%M%P')  : $GUAPearned in last $(date -d  @$TimeElapsed +'%M%S') min"
-echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M%P')"
+echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M:%S%P') EST"
 
 #Remove thousands comma from GUAPearned variable
 #GUAPearned=$(python -c 'import os; print "{0:.0f}".format(float(os.environ["GUAPearned"]))')
@@ -137,15 +137,15 @@ TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
 TimeElapsedHr=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H')
 
 if [[ $TimeElpsedHr > '0' ]]; then
-  echo "TimeElapsedHr = $TimeElapsedHr"
-  echo "TimeElapsedHr >0"
+  #echo "TimeElapsedHr = $TimeElapsedHr"
+  #echo "TimeElapsedHr >0"
   GUAPearnRateH=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedHr"]))))')
   echo "  Earn rate/hr     :  [$GUAPearnRateH GUAP/hour     ]"
 fi
 
 if [[ $TimeElapsedMin > '0' ]]; then
-  echo "TimeElapsedMin = $TimeElapsedMin"
-  echo "TimeElapsedMin > 0"
+  #echo "TimeElapsedMin = $TimeElapsedMin"
+  #echo "TimeElapsedMin > 0"
   GUAPearnRateM=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedMin"]))))')
   echo "  Earn rate/min    :  [$GUAPearnRateM GUAP/minute   ]"
 fi
