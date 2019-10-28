@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #This script should be called with text file as an argument:
-# e.g sudo /root/ChkGuapHoldingsv3.sh /root/file.text
+# e.g sudo /root/ChkGuapHoldingsv3.sh /root/file.text /root/ouput.text
 
 #The text file should have the GUAP addresses you want to check the amounts for and a corresponding label for each address
 #Format for the text should be:
@@ -43,6 +43,8 @@ MNArray[$n]=$address
 n=$((n+1))
 done < $filename
 
+LastGuapTime='0'
+LastGuapTotal='0'
 
 #Read in last GUAPtotal and timestamp from output.text
 LastGuapFile="/root/output.text"
