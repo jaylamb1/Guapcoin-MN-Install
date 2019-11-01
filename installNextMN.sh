@@ -203,7 +203,7 @@ do
   if ! [ "$MNID" -eq "$MNID" ] 2> /dev/null
   then
       echo ""
-      echo "Sorry, the ID# must be a single digit integer."
+      echo "Sorry, the ID# must be a single an integer."
       echo ""
       read -rp "Press any key to continue. " -n1 -s
       clear
@@ -350,5 +350,5 @@ clear
 
 
 echo "" && echo "Masternode$MNID setup completed." && echo ""
-echo "" && echo "Please see details for the new Masternode$MNID below:"
-echo -ne "$(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID masternode status" "$USER")\\r"
+#echo "" && echo "Please see details for the new Masternode$MNID below:"
+#echo -ne "$(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID masternode status" "$USER")\\r"
