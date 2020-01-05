@@ -197,7 +197,7 @@ do
       fi
   done
   echo ""
-  read -e -p "Please choose an ID# for your new Masternode that does not on the list of detected MNs above) : " MNID
+  read -e -p "Please choose an ID# for your new Masternode that does not appear on the list of detected MNs above : " MNID
 
   # Make sure that $MNID is a number
   if ! [ "$MNID" -eq "$MNID" ] 2> /dev/null
@@ -337,6 +337,11 @@ echo "Your masternode is syncing. Please wait for this process to finish."
 echo "This step can take up to a few hours. Do not close this window."
 
 echo ""
+#Get current block count/height
+parm9="http://159.65.221.180:3001/api/getblockcount"
+BlockHeight=$(curl -s -X GET $parm9)
+BlockHeight=$(printf '%14s' $BlockHeight)
+echo "Current block height: $BlockHeight"
 
 until su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID mnsync status 2>/dev/null | grep '\"IsBlockchainSynced\": true' > /dev/null" "$USER"; do
   echo -ne "Current block: $(su -c "/usr/local/bin/guapcoin-cli -conf=/root/.guapcoin$MNID/guapcoin.conf -datadir=/root/.guapcoin$MNID getblockcount" "$USER")\\r"
