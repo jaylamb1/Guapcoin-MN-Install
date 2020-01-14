@@ -48,6 +48,11 @@ LastGuapTotal='0'
 
 #Read in last GUAPtotal and timestamp from output.text
 LastGuapFile="/root/output.text"
+
+#Clean up the file, remove bash comments and empty lines (creates a backup before removal)
+sed -i".bkup" 's/^#.*$//' $LastGuapFile #remove comments
+sed -i '/^$/d' $LastGuapFile #remove empty lines
+
 if test -f "$LastGuapFile"; then
   while read -r time total; do
     LastGuapTime=$time
