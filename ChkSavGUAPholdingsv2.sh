@@ -47,7 +47,7 @@ LastGuapTime='0'
 LastGuapTotal='0'
 
 #Read in last GUAPtotal and timestamp from output.text
-LastGuapFile="/root/output.text"
+LastGuapFile="/root/output2.text"
 
 #Clean up the file, remove bash comments and empty lines (creates a backup before removal)
 sed -i".bkup" 's/^#.*$//' $LastGuapFile #remove comments
