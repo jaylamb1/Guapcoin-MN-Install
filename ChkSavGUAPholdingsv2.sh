@@ -83,7 +83,7 @@ python - <<END
 import os
 lst = os.environ['GuapChkArrayList']
 date = int(os.environ['TestDate'])
-print lst[min(range(len(lst)), key = lambda i: abs(lst[i]-date))]
+print lst[min(range(len(lst)), key = lambda i: abs(int(lst[i])-date))]
 
 END
 }
