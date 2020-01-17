@@ -77,7 +77,7 @@ export TestDate="1579016427"
 for i in ${GuapChkArray[@]:1}; do
   GuapChkArrayList+=,$i
 done
-
+echo "$GuapChkArrayList"
 function find_closest {
 python - <<END
 import os
