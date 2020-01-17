@@ -80,7 +80,7 @@ done
 function find_closest {
 PYTHON_ARG="$1" python - <<END
 import os
-lst = int(os.environ['GuapChkArrayList'])
+lst = os.environ['GuapChkArrayList']
 print lst[min(range(len(lst)), key = lambda i: abs(lst[i]-PYTHON_ARG))]
 
 END
