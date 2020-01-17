@@ -53,6 +53,26 @@ LastGuapFile="/root/output2.text"
 sed -i".bkup" 's/^#.*$//' $LastGuapFile #remove comments
 sed -i '/^$/d' $LastGuapFile #remove empty lines
 
+#Create arrays to hold GUAP totals and time of check(s) from file
+declare -a GuapTotalArray
+declare -a GuapChkArray
+
+
+#get array of all recorded GUAP totals and time of those checks
+y=0
+if test -f "$LastGuapFile"; then
+  while read check total; do
+    # reading each line
+    GuapChkArray[$y]=$check
+    GuapTotalArray[$y]=$total
+    y=$((y+1))
+  done < $LastGuapFile
+fi
+
+echo "Test GuapChkArray[0]=${GuapChkArray[0]}"
+echo "Test GuapTotalArray[0]=${GuapTotalArray[0]}"
+
+#get last recorded GUAP total and time of check
 if test -f "$LastGuapFile"; then
   while read -r time total; do
     LastGuapTime=$time
