@@ -69,8 +69,25 @@ if test -f "$LastGuapFile"; then
   done < $LastGuapFile
 fi
 
-echo "Test GuapChkArray[0]=${GuapChkArray[0]}"
-echo "Test GuapTotalArray[0]=${GuapTotalArray[0]}"
+
+#Define function to find closest value in GuapChkArray using embedded python function
+export GuapChkArray
+function find_closest {
+PYTHON_ARG="$1" python - <<END
+import os
+lst = int(os.environ['GuapChkArray'])
+return lst[min(range(len(lst)), key = lambda i: abs(lst[i]-PYTHON_ARG))]
+
+END
+}
+
+echo $(find_closest 1579016427)
+
+
+
+
+#echo "Test GuapChkArray[0]=${GuapChkArray[0]}"
+#echo "Test GuapTotalArray[0]=${GuapTotalArray[0]}"
 
 #get last recorded GUAP total and time of check
 if test -f "$LastGuapFile"; then
