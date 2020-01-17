@@ -82,7 +82,7 @@ function find_closest {
 python - <<END
 import os
 lst = os.environ['GuapChkArrayList']
-date = os.environ['TestDate']
+date = int(os.environ['TestDate'])
 print lst[min(range(len(lst)), key = lambda i: abs(lst[i]-date))]
 
 END
