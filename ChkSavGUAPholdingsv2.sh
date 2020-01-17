@@ -71,17 +71,23 @@ fi
 
 
 #Define function to find closest value in GuapChkArray using embedded python function
-#Convert GuapChkArray from bash array to list usable by python
+#Convert GuapChkArray from bash array to string usable by python
 export GuapChkArrayList=${GuapChkArray[0]}
 export TestDate="1579016427"
 for i in ${GuapChkArray[@]:1}; do
   GuapChkArrayList+=,$i
 done
+
 echo "$GuapChkArrayList"
+
 function find_closest {
 python - <<END
 import os
+#convert string to python list
 lst = os.environ['GuapChkArrayList']
+lst = list(lst.split(","))
+
+
 date = int(os.environ['TestDate'])
 print lst[min(range(len(lst)), key = lambda i: abs(int(lst[i])-date))]
 
