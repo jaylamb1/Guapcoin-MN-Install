@@ -94,8 +94,8 @@ print lst[min(range(len(lst)), key = lambda i: abs(int(lst[i])-date))]
 END
 }
 
-echo $(find_closest)
-
+ClosestDate=$(find_closest)
+echo $ClosestDate
 
 
 
