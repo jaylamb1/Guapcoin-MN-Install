@@ -46,19 +46,19 @@ done < $filename
 LastGuapTime='0'
 LastGuapTotal='0'
 
-#Read in last GUAPtotal and timestamp from output.text
+#Read in GUAPtotals and timestamps from output2.text
 LastGuapFile="/root/output2.text"
 
 #Clean up the file, remove bash comments and empty lines (creates a backup before removal)
 sed -i".bkup" 's/^#.*$//' $LastGuapFile #remove comments
 sed -i '/^$/d' $LastGuapFile #remove empty lines
 
-#Create arrays to hold GUAP totals and time of check(s) from file
+#Create arrays to hold GUAP totals and timestampsfrom file
 declare -a GuapTotalArray
 declare -a GuapChkArray
 
 
-#get array of all recorded GUAP totals and time of those checks
+#get array of all recorded GUAP totals and timestamps
 y=0
 if test -f "$LastGuapFile"; then
   while read check total; do
@@ -74,6 +74,7 @@ fi
 #Convert GuapChkArray from bash array to string usable by python
 export GuapChkArrayList=${GuapChkArray[0]}
 export TestDate="1579016427"
+export UserDate=""
 for i in ${GuapChkArray[@]:1}; do
   GuapChkArrayList+=,$i
 done
@@ -88,14 +89,15 @@ lst = os.environ['GuapChkArrayList']
 lst = list(lst.split(","))
 
 
-date = int(os.environ['TestDate'])
+date = int(os.environ['UserDate'])
 print lst[min(range(len(lst)), key = lambda i: abs(int(lst[i])-date))]
 
 END
 }
 
 ClosestDate=$(find_closest)
-echo $ClosestDate
+#echo $ClosestDate
+
 
 
 
@@ -112,20 +114,6 @@ if test -f "$LastGuapFile"; then
   done < $LastGuapFile
 fi
 
-#while read -r time total; do
-  #LastGuapTime=$time
-  #LastGuapTotal=$total
-  #echo "Test LastGuapTime = $LastGuapTime"
-  #echo "Test LastGuapTotal = $LastGuapTotal"
-#done < $LastGuapFile
-
-#for line in `cat /root/output.text`
-#do
-#LastGuapTime=$line
-#LastGuapTotal=$line
-#echo "LastGuapTime = $LastGuapTime"
-#echo "LastGuapTotal = $LastGuapTotal"
-#done
 
 echo ""
 
@@ -179,18 +167,26 @@ echo "  Total Current GUAP Holdings                   : $(python -c 'import os; 
 echo -e "$d $MN_Total" >> /root/output2.text
 echo ""
 echo "-----------------------------------------------------------------"
+
+DateVar=""
+#Request date from user
+echo "Please a date (in mm/dd/yyyy format), or number of days in the "
+read -e -p "past, from which to calculate GUAP earn rate : " DateVar
+
+if date=$(date -d "$DateVar" +'%m/%d/%Y'); then 
+  # user date was ok
+  echo $date
+
+
 GUAPearned=$(python -c 'import os; print "{0:,.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
 GUAPearnedNoComma=$(python -c 'import os; print "{0:.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
 #TimeElapsed=$((d_epoch-LastGuapTime))
 d_var=$(TZ=":US/Eastern" date -d @$d +'%Y-%m-%dT%H:%M:%S')
 LastGuapTime_var=$(TZ=":US/Eastern" date -d @$LastGuapTime +'%Y-%m-%dT%H:%M:%S')
-#echo "d= $d_var"
-#echo "LastGuapTime= $LastGuapTime_var"
+
 
 TimeElapsed=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%dd:%Hh:%Mm:%Ss')
-#echo "Time elasped is $TimeElapsed"
-#TimeElapsed_s=$(date -d  @$TimeElapsed +'%S')
-#echo "  GUAP earned since last check @ $(date -d  @$LastGuapTime +'%m/%d %I:%M%P')  : $GUAPearned in last $(date -d  @$TimeElapsed +'%M%S') min"
+
 echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M:%S%P') EST"
 
 #Remove thousands comma from GUAPearned variable
