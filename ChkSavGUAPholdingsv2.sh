@@ -95,7 +95,7 @@ print lst[min(range(len(lst)), key = lambda i: abs(int(lst[i])-date))]
 END
 }
 
-ClosestDate=$(find_closest)
+#ClosestDate=$(find_closest)
 #echo $ClosestDate
 
 
@@ -173,7 +173,7 @@ DateVar=""
 echo "Please a date (in mm/dd/yyyy format), or number of days in the "
 read -e -p "past, from which to calculate GUAP earn rate : " DateVar
 
-if date=$(date -d "$DateVar" +'%m/%d/%Y'); then 
+if date=$(date -d "$DateVar" +'%m/%d/%Y'); then
   # user date was ok
   echo $date
 
