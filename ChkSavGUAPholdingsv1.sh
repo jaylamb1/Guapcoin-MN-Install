@@ -195,7 +195,8 @@ shopt -u extglob
 MNCount=$(printf '%14s' $MNCount)
 
 #Get percentage of total GUAP voting power
-n=$((n-2))
+#decrease n variable because of the 2 change addresses we are tracking
+#n=$((n-2))
 #Perc2=$(python -c 'import os; print "{:>13,.0f}".format((float(os.environ["MN_Total"]) / float(os.environ["MNCount"]) * 100))')
 
 
