@@ -194,10 +194,7 @@ shopt -u extglob
 #right justify
 MNCount=$(printf '%14s' $MNCount)
 
-#Get percentage of total GUAP voting power
-#decrease n variable because of the 2 change addresses we are tracking
-#n=$((n-2))
-#Perc2=$(python -c 'import os; print "{:>13,.0f}".format((float(os.environ["MN_Total"]) / float(os.environ["MNCount"]) * 100))')
+
 
 
 #Get current block count/height
@@ -213,6 +210,10 @@ echo "Total number of GUAP masternodes                : $MNCount"
 MNCount=$(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["MNCount"]))')
 n=$(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["n"]))')
 echo ""
+
+#Get percentage of total GUAP voting power
+#decrease n variable because of the 2 change addresses we are tracking
+#n=$((n-2))
 Perc2=$(python -c 'import os; print "{:>13,.2f}".format((float(os.environ["n"]) / float(os.environ["MNCount"]) * 100))')
 
 echo "Percentage of total GUAP Voting Power           : $Perc2%"
