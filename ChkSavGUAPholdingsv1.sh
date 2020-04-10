@@ -208,7 +208,7 @@ parm9="http://159.65.221.180:3001/api/getblockcount"
 BlockHeight=$(curl -s -X GET $parm9)
 BlockHeight=$(printf '%14s' $BlockHeight)
 
-echo "Current per GUAP Value (USD)                    : $(python -c 'import os; print "${0:>14,.2f}".format(float(os.environ["GUAPValue"]))')"
+echo "Current per GUAP Value (USD)                    : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["GUAPValue"]))')"
 echo ""
 
 #Print out percentage of GUAP money supply, Masternode count, and GUAP chain block count/height
