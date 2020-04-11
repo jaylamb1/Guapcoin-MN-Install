@@ -124,7 +124,7 @@ parm10=$(curl -s https://guapexplorer.com/api/coin/ | awk -F, '{print $13}' | se
 GUAPValue=$parm10
 
 echo "  Total Current GUAP Holdings (USD)             : $(python -c 'import os; print "{0:>14,.3f}".format((float(os.environ["MN_Total"]) * float(os.environ["GUAPValue"])))')"
-echo "  Total Current GUAP Holdings (USD)             : $(python -c 'import os; print "{0:>14}".format("${:,.3f}".format((float(os.environ["MN_Total"]) * float(os.environ["GUAPValue"])))')"
+echo "  Total Current GUAP Holdings (USD)             : $(python -c 'import os; print "{0:>14}".format("${:,.3f}".format((float(os.environ["MN_Total"]) * float(os.environ["GUAPValue"]))))')"
 echo "-----------------------------------------------------------------"
 
 #Save MN_Total and timestamp to file output.text
