@@ -195,9 +195,9 @@ echo "  Earn rate/sec   :  $GUAPearnRateS GUAP[\$$GUAPUSDearnRateS]/second"
 
 echo "-----------------------------------------------------------------"
 echo ""
-echo "Total GUAP Money Supply                         : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["GUAPTotal"]))')"
+echo "Total GUAP Money Supply                        : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["GUAPTotal"]))')"
 echo ""
-echo "Total GUAP Money Supply (USD)                   : $(python -c 'import os; print "{0:>13}".format("${:,.2f}".format(float(os.environ["GUAPTotal"]) * float(os.environ["GUAPValue"])))')"
+echo "Total GUAP Money Supply (USD)                  : $(python -c 'import os; print "{0:>14}".format("${:,.2f}".format(float(os.environ["GUAPTotal"]) * float(os.environ["GUAPValue"])))')"
 
 
 echo ""
@@ -220,17 +220,17 @@ parm9="http://159.65.221.180:3001/api/getblockcount"
 BlockHeight=$(curl -s -X GET $parm9)
 BlockHeight=$(printf '%14s' $BlockHeight)
 
-echo "Current per GUAP Value (USD)                    : $(python -c 'import os; print "{0:>14}".format("${:,.2f}".format( float(os.environ["GUAPValue"]) ) )')"
+echo "Current per GUAP Value (USD)                   :  $(python -c 'import os; print "{0:>14}".format("${:,.2f}".format( float(os.environ["GUAPValue"]) ) )')"
 
 
 
 echo ""
 
 #Print out percentage of GUAP money supply, Masternode count, and GUAP chain block count/height
-echo "Percentage of total GUAP Money Supply           : $Perc%"
+echo "Percentage of total GUAP Money Supply          :  $Perc%"
 echo ""
 
-echo "Total number of GUAP masternodes                : $MNCount"
+echo "Total number of GUAP masternodes               :  $MNCount"
 MNCount=$(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["MNCount"]))')
 n=$(python -c 'import os; print "{0:>14,.0f}".format(float(os.environ["n"]))')
 echo ""
@@ -240,9 +240,9 @@ echo ""
 #n=$((n-2))
 Perc2=$(python -c 'import os; print "{:>13,.2f}".format((float(os.environ["n"]) / float(os.environ["MNCount"]) * 100))')
 
-echo "Percentage of total GUAP Voting Power           : $Perc2%"
+echo "Percentage of total GUAP Voting Power          :  $Perc2%"
 echo ""
-echo "GUAP Chain Block Count                          : $BlockHeight"
+echo "GUAP Chain Block Count                         :  $BlockHeight"
 echo ""
 
 
