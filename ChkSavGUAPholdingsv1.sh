@@ -163,7 +163,7 @@ TimeElapsedHr=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%H')
 if [[ $TimeElapsedHr > '0' ]]; then
   #echo "TimeElapsedHr = $TimeElapsedHr"
   #echo "TimeElapsedHr >0"
-  GUAPearnRateH=$(python -c 'import os; print "{:10.2f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / (float(os.environ["TimeElapsedSec"])/3600))))')
+  GUAPearnRateH=$(python -c 'import os; print "{0:.2f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / (float(os.environ["TimeElapsedSec"])/3600))))')
   GUAPUSDearnRateH=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearnRateH"]) * float(os.environ["GUAPValue"])))')
   echo "  Earn rate/hr    :  $GUAPearnRateH GUAP[\$$GUAPUSDearnRateH]/hour"
 fi
@@ -171,7 +171,7 @@ fi
 if [[ $TimeElapsedMin > '0' ]]; then
   #echo "TimeElapsedMin = $TimeElapsedMin"
   #echo "TimeElapsedMin > 0"
-  GUAPearnRateM=$(python -c 'import os; print "{:10.2f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / (float(os.environ["TimeElapsedSec"])/60))))')
+  GUAPearnRateM=$(python -c 'import os; print "{0:.2f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / (float(os.environ["TimeElapsedSec"])/60))))')
   GUAPUSDearnRateM=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearnRateM"]) * float(os.environ["GUAPValue"])))')
   echo "  Earn rate/min   :  $GUAPearnRateM GUAP[\$$GUAPUSDearnRateM]/minute"
 fi
@@ -185,7 +185,7 @@ fi
 
 #  GUAPearnRateH=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedHr"]))))')
 #  GUAPearnRateM=$(python -c 'import os; print "{:10.8f}".format(abs((float(os.environ["GUAPearned"]) / float(os.environ["TimeElapsedMin"]))))')
-  GUAPearnRateS=$(python -c 'import os; print "{:10.2f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / float(os.environ["TimeElapsedSec"]))))')
+  GUAPearnRateS=$(python -c 'import os; print "{0:.2f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / float(os.environ["TimeElapsedSec"]))))')
   GUAPUSDearnRateS=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearnRateS"]) * float(os.environ["GUAPValue"])))')
 #  echo "  Earn rate        :  [$GUAPearnRateH GUAP/hour   ]"
 #  echo "                   :  [$GUAPearnRateM GUAP/minute ]"
@@ -195,7 +195,7 @@ echo "  Earn rate/sec   :  $GUAPearnRateS GUAP[\$$GUAPUSDearnRateS]/second"
 
 echo "-----------------------------------------------------------------"
 echo ""
-echo "Total GUAP Money Supply                        : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["GUAPTotal"]))')"
+echo "Total GUAP Money Supply                        :  $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["GUAPTotal"]))')"
 echo ""
 echo "Total GUAP Money Supply (USD)                  : $(python -c 'import os; print "{0:>14}".format("${:,.2f}".format(float(os.environ["GUAPTotal"]) * float(os.environ["GUAPValue"])))')"
 
