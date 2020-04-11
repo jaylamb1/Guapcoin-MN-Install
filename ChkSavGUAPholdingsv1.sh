@@ -132,10 +132,12 @@ echo "$d $MN_Total" > /root/output.text
 echo ""
 echo "-----------------------------------------------------------------"
 GUAPearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
-GUAPUSDearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])) * float(os.environ["GUAPValue"])))')
+GUAPUSDearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearned"]) * float(os.environ["GUAPValue"])))')
+#GUAPUSDearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])) * float(os.environ["GUAPValue"])))')
 
 #For use in the per hour, minute, sec calculations below
 GUAPearnedNoComma=$(python -c 'import os; print "{0:.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
+#GUAPUSDearnedNoComma=$(python -c 'import os; print "{0:.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])) * float(os.environ["GUAPValue"])))')
 
 #TimeElapsed=$((d_epoch-LastGuapTime))
 d_var=$(TZ=":US/Eastern" date -d @$d +'%Y-%m-%dT%H:%M:%S')
