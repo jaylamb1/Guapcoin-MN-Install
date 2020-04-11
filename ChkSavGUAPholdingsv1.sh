@@ -197,7 +197,7 @@ echo "-----------------------------------------------------------------"
 echo ""
 echo "Total GUAP Money Supply                         : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["GUAPTotal"]))')"
 echo ""
-echo "Total GUAP Money Supply (USD)                   : $(python -c 'import os; print "{0:>14}".format("${:,.2f}".format(float(os.environ["GUAPTotal"]) * float(os.environ["GUAPValue"])))')"
+echo "Total GUAP Money Supply (USD)                   : $(python -c 'import os; print "{0:>13}".format("${:,.2f}".format(float(os.environ["GUAPTotal"]) * float(os.environ["GUAPValue"])))')"
 
 
 echo ""
