@@ -124,14 +124,19 @@ parm10=$(curl -s https://guapexplorer.com/api/coin/ | awk -F, '{print $13}' | se
 GUAPValue=$parm10
 
 echo "  Total Current GUAP Holdings (USD)             : $(python -c 'import os; print "{0:>14,.3f}".format((float(os.environ["MN_Total"]) * float(os.environ["GUAPValue"])))')"
+echo "  Total Current GUAP Holdings (USD)             : $(python -c 'import os; print "{0:>14}".format("${:,.3f}".format((float(os.environ["MN_Total"]) * float(os.environ["GUAPValue"])))')"
 echo "-----------------------------------------------------------------"
 
 #Save MN_Total and timestamp to file output.text
 echo "$d $MN_Total" > /root/output.text
 echo ""
 echo "-----------------------------------------------------------------"
-GUAPearned=$(python -c 'import os; print "{0:,.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
-GUAPearnedNoComma=$(python -c 'import os; print "{0:.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
+GUAPearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
+GUAPUSDearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearned"]) * float(os.environ["GUAPValue"])))')
+
+#For use in the per hour, minute, sec calculations below
+GUAPearnedNoComma=$(python -c 'import os; print "{0:.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
+
 #TimeElapsed=$((d_epoch-LastGuapTime))
 d_var=$(TZ=":US/Eastern" date -d @$d +'%Y-%m-%dT%H:%M:%S')
 LastGuapTime_var=$(TZ=":US/Eastern" date -d @$LastGuapTime +'%Y-%m-%dT%H:%M:%S')
@@ -147,7 +152,7 @@ echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M:%S
 #Remove thousands comma from GUAPearned variable
 #GUAPearned=$(python -c 'import os; print "{0:.0f}".format(float(os.environ["GUAPearned"]))')
 
-echo "  GUAP earned since:  $GUAPearned GUAP in last $TimeElapsed"
+  echo "  Earned since     :  $GUAPearned GUAP[\$$GUAPUSDearned] in last $TimeElapsed"
 
 TimeElapsedSec=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
 TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
