@@ -155,7 +155,7 @@ echo "  Last check @ $(TZ=":US/Eastern" date -d  @$LastGuapTime +'%m/%d %I:%M:%S
 #Remove thousands comma from GUAPearned variable
 #GUAPearned=$(python -c 'import os; print "{0:.0f}".format(float(os.environ["GUAPearned"]))')
 
-  echo "  Earned since    :  $GUAPearned GUAP[\$$GUAPUSDearned] in last $TimeElapsed"
+  echo "  Earned since  : $GUAPearned GUAP[\$$GUAPUSDearned] in last $TimeElapsed"
 
 TimeElapsedSec=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%S')
 TimeElapsedMin=$(dateutils.ddiff $d_var $LastGuapTime_var -f '%M')
@@ -166,7 +166,7 @@ if [[ $TimeElapsedHr > '0' ]]; then
   #echo "TimeElapsedHr >0"
   GUAPearnRateH=$(python -c 'import os; print "{0:.2f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / (float(os.environ["TimeElapsedSec"])/3600))))')
   GUAPUSDearnRateH=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearnRateH"]) * float(os.environ["GUAPValue"])))')
-  echo "  Earn rate/hr    :  $GUAPearnRateH GUAP[\$$GUAPUSDearnRateH]/hour"
+  echo "  Earn rate/hr  : $GUAPearnRateH GUAP[\$$GUAPUSDearnRateH]/hour"
 fi
 
 if [[ $TimeElapsedMin > '0' ]]; then
@@ -174,7 +174,7 @@ if [[ $TimeElapsedMin > '0' ]]; then
   #echo "TimeElapsedMin > 0"
   GUAPearnRateM=$(python -c 'import os; print "{0:.2f}".format(abs((float(os.environ["GUAPearnedNoComma"]) / (float(os.environ["TimeElapsedSec"])/60))))')
   GUAPUSDearnRateM=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearnRateM"]) * float(os.environ["GUAPValue"])))')
-  echo "  Earn rate/min   :  $GUAPearnRateM GUAP[\$$GUAPUSDearnRateM]/minute"
+  echo "  Earn rate/min : $GUAPearnRateM GUAP[\$$GUAPUSDearnRateM]/minute"
 fi
 
 
@@ -191,7 +191,7 @@ fi
 #  echo "  Earn rate        :  [$GUAPearnRateH GUAP/hour   ]"
 #  echo "                   :  [$GUAPearnRateM GUAP/minute ]"
 #  echo "                   :  [$GUAPearnRateS GUAP/second ]"
-echo "  Earn rate/sec   :  $GUAPearnRateS GUAP[\$$GUAPUSDearnRateS]/second"
+echo "  Earn rate/sec : $GUAPearnRateS GUAP[\$$GUAPUSDearnRateS]/second"
 
 
 echo "-----------------------------------------------------------------"
