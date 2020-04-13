@@ -118,7 +118,7 @@ Perc=$(python -c 'import os; print "{:>13,.2f}".format((float(os.environ["MN_Tot
 
 #Print out total holding and total GUAP money supply
 echo "-----------------------------------------------------------------"
-echo "  Total Current GUAP Holdings                   : $(python -c 'import os; print "{0:>14,.3f}".format(float(os.environ["MN_Total"]))')"
+echo "  Total Current GUAP Holdings                   : $(python -c 'import os; print "{0:>14,.2f}".format(float(os.environ["MN_Total"]))')"
 
 parm10=$(curl -s https://guapexplorer.com/api/coin/ | awk -F, '{print $13}' | sed 's/.*://')
 GUAPValue=$parm10
@@ -131,13 +131,13 @@ echo "-----------------------------------------------------------------"
 echo "$d $MN_Total" > /root/output.text
 echo ""
 echo "-----------------------------------------------------------------"
-GUAPearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
+GUAPearned=$(python -c 'import os; print "{0:,.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
 #GUAPUSDearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearned"]) * float(os.environ["GUAPValue"])))')
 #GUAPUSDearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])) * float(os.environ["GUAPValue"])))')
 
 #For use in the per hour, minute, sec calculations below
-GUAPearnedNoComma=$(python -c 'import os; print "{0:.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
-GUAPUSDearned=$(python -c 'import os; print "{0:,.2f}".format((float(os.environ["GUAPearnedNoComma"]) * float(os.environ["GUAPValue"])))')
+GUAPearnedNoComma=$(python -c 'import os; print "{0:.0f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])))')
+GUAPUSDearned=$(python -c 'import os; print "{0:,.0f}".format((float(os.environ["GUAPearnedNoComma"]) * float(os.environ["GUAPValue"])))')
 #GUAPUSDearnedNoComma=$(python -c 'import os; print "{0:.2f}".format((float(os.environ["MN_Total"]) - float(os.environ["LastGuapTotal"])) * float(os.environ["GUAPValue"])))')
 
 #TimeElapsed=$((d_epoch-LastGuapTime))
